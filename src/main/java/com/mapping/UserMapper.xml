@@ -1,0 +1,283 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dao.UserMapper" >
+  <resultMap id="BaseResultMap" type="com.model.User" >
+    <id column="USER_ID" property="userId" jdbcType="OTHER" />
+    <result column="LOGIN_ID" property="loginId" jdbcType="OTHER" />
+    <result column="LOGIN_PWD" property="loginPwd" jdbcType="OTHER" />
+    <result column="USER_NM" property="userNm" jdbcType="OTHER" />
+    <result column="HOME_TOWN" property="homeTown" jdbcType="OTHER" />
+    <result column="BIRTH_DATE" property="birthDate" jdbcType="DATE" />
+    <result column="MOBILE" property="mobile" jdbcType="OTHER" />
+    <result column="EMAIL" property="email" jdbcType="OTHER" />
+    <result column="TENCENT_QQ" property="tencentQq" jdbcType="OTHER" />
+    <result column="WEIXIN_ID" property="weixinId" jdbcType="OTHER" />
+    <result column="ACTIVATE_DATE" property="activateDate" jdbcType="DATE" />
+    <result column="NOTE" property="note" jdbcType="OTHER" />
+    <result column="HEAD_IMG" property="headImg" jdbcType="OTHER" />
+    <result column="ONLINE_TIME" property="onlineTime" jdbcType="DECIMAL" />
+    <result column="LAST_LOGIN_DATE" property="lastLoginDate" jdbcType="DATE" />
+    <result column="ACTIVATE_KEY" property="activateKey" jdbcType="OTHER" />
+    <result column="LAN" property="lan" jdbcType="OTHER" />
+    <result column="CREATE_BY" property="createBy" jdbcType="OTHER" />
+    <result column="CREATE_DATE" property="createDate" jdbcType="DATE" />
+    <result column="UPDATE_BY" property="updateBy" jdbcType="OTHER" />
+    <result column="UPDATE_DATE" property="updateDate" jdbcType="DATE" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    USER_ID, LOGIN_ID, LOGIN_PWD, USER_NM, HOME_TOWN, BIRTH_DATE, MOBILE, EMAIL, TENCENT_QQ, 
+    WEIXIN_ID, ACTIVATE_DATE, NOTE, HEAD_IMG, ONLINE_TIME, LAST_LOGIN_DATE, ACTIVATE_KEY, 
+    LAN, CREATE_BY, CREATE_DATE, UPDATE_BY, UPDATE_DATE
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Object" >
+    select 
+    <include refid="Base_Column_List" />
+    from TBL_OVW_USER
+    where USER_ID = #{userId,jdbcType=OTHER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Object" >
+    delete from TBL_OVW_USER
+    where USER_ID = #{userId,jdbcType=OTHER}
+  </delete>
+  <insert id="insert" parameterType="com.model.User" >
+    insert into TBL_OVW_USER (USER_ID, LOGIN_ID, LOGIN_PWD, 
+      USER_NM, HOME_TOWN, BIRTH_DATE, 
+      MOBILE, EMAIL, TENCENT_QQ, 
+      WEIXIN_ID, ACTIVATE_DATE, NOTE, 
+      HEAD_IMG, ONLINE_TIME, LAST_LOGIN_DATE, 
+      ACTIVATE_KEY, LAN, CREATE_BY, 
+      CREATE_DATE, UPDATE_BY, UPDATE_DATE
+      )
+    values (#{userId,jdbcType=OTHER}, #{loginId,jdbcType=OTHER}, #{loginPwd,jdbcType=OTHER}, 
+      #{userNm,jdbcType=OTHER}, #{homeTown,jdbcType=OTHER}, #{birthDate,jdbcType=DATE}, 
+      #{mobile,jdbcType=OTHER}, #{email,jdbcType=OTHER}, #{tencentQq,jdbcType=OTHER}, 
+      #{weixinId,jdbcType=OTHER}, #{activateDate,jdbcType=DATE}, #{note,jdbcType=OTHER}, 
+      #{headImg,jdbcType=OTHER}, #{onlineTime,jdbcType=DECIMAL}, #{lastLoginDate,jdbcType=DATE}, 
+      #{activateKey,jdbcType=OTHER}, #{lan,jdbcType=OTHER}, #{createBy,jdbcType=OTHER}, 
+      #{createDate,jdbcType=DATE}, #{updateBy,jdbcType=OTHER}, #{updateDate,jdbcType=DATE}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.model.User" >
+    insert into TBL_OVW_USER
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="userId != null" >
+        USER_ID,
+      </if>
+      <if test="loginId != null" >
+        LOGIN_ID,
+      </if>
+      <if test="loginPwd != null" >
+        LOGIN_PWD,
+      </if>
+      <if test="userNm != null" >
+        USER_NM,
+      </if>
+      <if test="homeTown != null" >
+        HOME_TOWN,
+      </if>
+      <if test="birthDate != null" >
+        BIRTH_DATE,
+      </if>
+      <if test="mobile != null" >
+        MOBILE,
+      </if>
+      <if test="email != null" >
+        EMAIL,
+      </if>
+      <if test="tencentQq != null" >
+        TENCENT_QQ,
+      </if>
+      <if test="weixinId != null" >
+        WEIXIN_ID,
+      </if>
+      <if test="activateDate != null" >
+        ACTIVATE_DATE,
+      </if>
+      <if test="note != null" >
+        NOTE,
+      </if>
+      <if test="headImg != null" >
+        HEAD_IMG,
+      </if>
+      <if test="onlineTime != null" >
+        ONLINE_TIME,
+      </if>
+      <if test="lastLoginDate != null" >
+        LAST_LOGIN_DATE,
+      </if>
+      <if test="activateKey != null" >
+        ACTIVATE_KEY,
+      </if>
+      <if test="lan != null" >
+        LAN,
+      </if>
+      <if test="createBy != null" >
+        CREATE_BY,
+      </if>
+      <if test="createDate != null" >
+        CREATE_DATE,
+      </if>
+      <if test="updateBy != null" >
+        UPDATE_BY,
+      </if>
+      <if test="updateDate != null" >
+        UPDATE_DATE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="userId != null" >
+        #{userId,jdbcType=OTHER},
+      </if>
+      <if test="loginId != null" >
+        #{loginId,jdbcType=OTHER},
+      </if>
+      <if test="loginPwd != null" >
+        #{loginPwd,jdbcType=OTHER},
+      </if>
+      <if test="userNm != null" >
+        #{userNm,jdbcType=OTHER},
+      </if>
+      <if test="homeTown != null" >
+        #{homeTown,jdbcType=OTHER},
+      </if>
+      <if test="birthDate != null" >
+        #{birthDate,jdbcType=DATE},
+      </if>
+      <if test="mobile != null" >
+        #{mobile,jdbcType=OTHER},
+      </if>
+      <if test="email != null" >
+        #{email,jdbcType=OTHER},
+      </if>
+      <if test="tencentQq != null" >
+        #{tencentQq,jdbcType=OTHER},
+      </if>
+      <if test="weixinId != null" >
+        #{weixinId,jdbcType=OTHER},
+      </if>
+      <if test="activateDate != null" >
+        #{activateDate,jdbcType=DATE},
+      </if>
+      <if test="note != null" >
+        #{note,jdbcType=OTHER},
+      </if>
+      <if test="headImg != null" >
+        #{headImg,jdbcType=OTHER},
+      </if>
+      <if test="onlineTime != null" >
+        #{onlineTime,jdbcType=DECIMAL},
+      </if>
+      <if test="lastLoginDate != null" >
+        #{lastLoginDate,jdbcType=DATE},
+      </if>
+      <if test="activateKey != null" >
+        #{activateKey,jdbcType=OTHER},
+      </if>
+      <if test="lan != null" >
+        #{lan,jdbcType=OTHER},
+      </if>
+      <if test="createBy != null" >
+        #{createBy,jdbcType=OTHER},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=DATE},
+      </if>
+      <if test="updateBy != null" >
+        #{updateBy,jdbcType=OTHER},
+      </if>
+      <if test="updateDate != null" >
+        #{updateDate,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.model.User" >
+    update TBL_OVW_USER
+    <set >
+      <if test="loginId != null" >
+        LOGIN_ID = #{loginId,jdbcType=OTHER},
+      </if>
+      <if test="loginPwd != null" >
+        LOGIN_PWD = #{loginPwd,jdbcType=OTHER},
+      </if>
+      <if test="userNm != null" >
+        USER_NM = #{userNm,jdbcType=OTHER},
+      </if>
+      <if test="homeTown != null" >
+        HOME_TOWN = #{homeTown,jdbcType=OTHER},
+      </if>
+      <if test="birthDate != null" >
+        BIRTH_DATE = #{birthDate,jdbcType=DATE},
+      </if>
+      <if test="mobile != null" >
+        MOBILE = #{mobile,jdbcType=OTHER},
+      </if>
+      <if test="email != null" >
+        EMAIL = #{email,jdbcType=OTHER},
+      </if>
+      <if test="tencentQq != null" >
+        TENCENT_QQ = #{tencentQq,jdbcType=OTHER},
+      </if>
+      <if test="weixinId != null" >
+        WEIXIN_ID = #{weixinId,jdbcType=OTHER},
+      </if>
+      <if test="activateDate != null" >
+        ACTIVATE_DATE = #{activateDate,jdbcType=DATE},
+      </if>
+      <if test="note != null" >
+        NOTE = #{note,jdbcType=OTHER},
+      </if>
+      <if test="headImg != null" >
+        HEAD_IMG = #{headImg,jdbcType=OTHER},
+      </if>
+      <if test="onlineTime != null" >
+        ONLINE_TIME = #{onlineTime,jdbcType=DECIMAL},
+      </if>
+      <if test="lastLoginDate != null" >
+        LAST_LOGIN_DATE = #{lastLoginDate,jdbcType=DATE},
+      </if>
+      <if test="activateKey != null" >
+        ACTIVATE_KEY = #{activateKey,jdbcType=OTHER},
+      </if>
+      <if test="lan != null" >
+        LAN = #{lan,jdbcType=OTHER},
+      </if>
+      <if test="createBy != null" >
+        CREATE_BY = #{createBy,jdbcType=OTHER},
+      </if>
+      <if test="createDate != null" >
+        CREATE_DATE = #{createDate,jdbcType=DATE},
+      </if>
+      <if test="updateBy != null" >
+        UPDATE_BY = #{updateBy,jdbcType=OTHER},
+      </if>
+      <if test="updateDate != null" >
+        UPDATE_DATE = #{updateDate,jdbcType=DATE},
+      </if>
+    </set>
+    where USER_ID = #{userId,jdbcType=OTHER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.model.User" >
+    update TBL_OVW_USER
+    set LOGIN_ID = #{loginId,jdbcType=OTHER},
+      LOGIN_PWD = #{loginPwd,jdbcType=OTHER},
+      USER_NM = #{userNm,jdbcType=OTHER},
+      HOME_TOWN = #{homeTown,jdbcType=OTHER},
+      BIRTH_DATE = #{birthDate,jdbcType=DATE},
+      MOBILE = #{mobile,jdbcType=OTHER},
+      EMAIL = #{email,jdbcType=OTHER},
+      TENCENT_QQ = #{tencentQq,jdbcType=OTHER},
+      WEIXIN_ID = #{weixinId,jdbcType=OTHER},
+      ACTIVATE_DATE = #{activateDate,jdbcType=DATE},
+      NOTE = #{note,jdbcType=OTHER},
+      HEAD_IMG = #{headImg,jdbcType=OTHER},
+      ONLINE_TIME = #{onlineTime,jdbcType=DECIMAL},
+      LAST_LOGIN_DATE = #{lastLoginDate,jdbcType=DATE},
+      ACTIVATE_KEY = #{activateKey,jdbcType=OTHER},
+      LAN = #{lan,jdbcType=OTHER},
+      CREATE_BY = #{createBy,jdbcType=OTHER},
+      CREATE_DATE = #{createDate,jdbcType=DATE},
+      UPDATE_BY = #{updateBy,jdbcType=OTHER},
+      UPDATE_DATE = #{updateDate,jdbcType=DATE}
+    where USER_ID = #{userId,jdbcType=OTHER}
+  </update>
+</mapper>
